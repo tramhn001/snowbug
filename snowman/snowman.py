@@ -30,6 +30,7 @@ def snowman(snowman_word):
             add_wrong_letter(wrong_letters, user_letter)
 
         if is_word_guessed(snowman_letters_guessed):
+            # show a winning message along with the full word
             print(f"Congratulations, you win! The word was {snowman_word}")
             return
 
@@ -38,6 +39,7 @@ def snowman(snowman_word):
         print_guesses_remaining(wrong_letters)
 
         if len(wrong_letters) == SNOWMAN_MAX_WRONG_GUESSES:
+            # show a losing message along with the full word
             print(f"Sorry, you lose! The word was {snowman}")
             return
 
@@ -48,8 +50,11 @@ def build_snowman_graphic(num_wrong_guesses):
     wrong guesses and converts it to a single string
     """
 
-    # use slicing to get the snowman lines we need
-    lines = SNOWMAN_IMAGE[:num_wrong_guesses - 1]
+    # get the part of the snowman for the number of wrong guesses
+    lines = []
+    for line_no in range(num_wrong_guesses - 1):
+        lines.append(SNOWMAN_IMAGE[line_no])
+
     return "\n".join(lines)
 
 
@@ -76,6 +81,7 @@ def get_letter_from_user(word_dict, wrong_letters):
 def build_word_dict(word):
     word_dict = {}
     for letter in word:
+        # keep track of any character a player might guess (alphabetic)
         word_dict[letter] = False
 
     return word_dict
@@ -83,9 +89,11 @@ def build_word_dict(word):
 
 def is_word_guessed(word_dict):
     for guessed in word_dict.values():
+        # if any letter hasn't been guessed, the word hasn't been guessed
         if not guessed:
             return False
 
+    # all letters were guessed (or we'd have returned) so the word is guessed!
     return True
 
 
@@ -93,16 +101,20 @@ def build_game_board(word, word_dict):
     output_letters = []
     for elem in word:
         if elem in word_dict:
+            # automatically add any character a player wouldn't be able to guess
             output_letters += elem
         elif word_dict[elem]:
+            # add any letters the player has guessed
             output_letters += elem
         else:
+            # add a blank for any letter not yet guessed
             output_letters += "_"
 
     return " ".join(output_letters)
 
 
 def add_wrong_letter(wrong_letters, letter):
+    # track the wrong guesses in alphabetical order
     wrong_letters.append(letter)
 
 
