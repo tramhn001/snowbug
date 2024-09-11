@@ -10,7 +10,7 @@ from snowman.snowman import (
 
 
 def make_std_input(guesses):
-    guesses_with_newlines = '\n'.join(guesses)
+    guesses_with_newlines = "\n".join(guesses)
     return io.StringIO(f"{guesses_with_newlines}\n")
 
 
@@ -181,13 +181,13 @@ def test_build_snowman_graphic_builds_full_snowman():
 
     # Assert
     assert snowman_image == (
-        '*   *   *  \n'
-        ' *   _ *   \n'
-        '   _[_]_ * \n'
+        "*   *   *  \n"
+        " *   _ *   \n"
+        "   _[_]_ * \n"
         '  * (")    \n'
-        '  \( : )/ *\n'
-        '* (_ : _)  \n'
-        '-----------'
+        "  \\( : )/ *\n"
+        "* (_ : _)  \n"
+        "-----------"
     )
 
 
@@ -196,15 +196,15 @@ def test_wrong_guesses_are_in_alphabetical_order_when_guessed_in_order():
     wrong_letters = []
 
     # Act
-    add_wrong_letter(wrong_letters, 'a')
-    add_wrong_letter(wrong_letters, 'b')
-    add_wrong_letter(wrong_letters, 'c')
-    add_wrong_letter(wrong_letters, 'd')
-    add_wrong_letter(wrong_letters, 'e')
-    add_wrong_letter(wrong_letters, 'f')
+    add_wrong_letter(wrong_letters, "a")
+    add_wrong_letter(wrong_letters, "b")
+    add_wrong_letter(wrong_letters, "c")
+    add_wrong_letter(wrong_letters, "d")
+    add_wrong_letter(wrong_letters, "e")
+    add_wrong_letter(wrong_letters, "f")
 
     # Assert
-    assert wrong_letters == ['a', 'b', 'c', 'd', 'e', 'f']
+    assert wrong_letters == ["a", "b", "c", "d", "e", "f"]
 
 
 def test_wrong_guesses_are_in_alphabetical_order_when_guessed_out_of_order():
@@ -212,15 +212,15 @@ def test_wrong_guesses_are_in_alphabetical_order_when_guessed_out_of_order():
     wrong_letters = []
 
     # Act
-    add_wrong_letter(wrong_letters, 'f')
-    add_wrong_letter(wrong_letters, 'e')
-    add_wrong_letter(wrong_letters, 'd')
-    add_wrong_letter(wrong_letters, 'c')
-    add_wrong_letter(wrong_letters, 'b')
-    add_wrong_letter(wrong_letters, 'a')
+    add_wrong_letter(wrong_letters, "f")
+    add_wrong_letter(wrong_letters, "e")
+    add_wrong_letter(wrong_letters, "d")
+    add_wrong_letter(wrong_letters, "c")
+    add_wrong_letter(wrong_letters, "b")
+    add_wrong_letter(wrong_letters, "a")
 
     # Assert
-    assert wrong_letters == ['a', 'b', 'c', 'd', 'e', 'f']
+    assert wrong_letters == ["a", "b", "c", "d", "e", "f"]
 
 
 # The following four tests are equivalent to the tests from the replit version #
@@ -228,10 +228,10 @@ def test_wrong_guesses_are_in_alphabetical_order_when_guessed_out_of_order():
 def test_prints_success_message_if_all_letters_guessed(capsys, monkeypatch):
     # Arrange (prepare to simulate user input)
     input_letters = "namwons"
-    monkeypatch.setattr('sys.stdin', make_std_input(input_letters))
+    monkeypatch.setattr("sys.stdin", make_std_input(input_letters))
 
     # Act
-    snowman('snowman')
+    snowman("snowman")
 
     # Assert (capture the printed output)
     captured = capsys.readouterr()
@@ -241,10 +241,10 @@ def test_prints_success_message_if_all_letters_guessed(capsys, monkeypatch):
 def test_prints_success_message_with_3_wrong_guesses_and_the_rest_right(capsys, monkeypatch):
     # Arrange (prepare to simulate user input)
     input_letters = "snbowmaqvn"
-    monkeypatch.setattr('sys.stdin', make_std_input(input_letters))
+    monkeypatch.setattr("sys.stdin", make_std_input(input_letters))
 
     # Act
-    snowman('snowman')
+    snowman("snowman")
 
     # Assert (capture the printed output)
     captured = capsys.readouterr()
@@ -255,10 +255,10 @@ def test_prints_success_message_with_3_wrong_guesses_and_the_rest_right(capsys, 
 def test_prints_failure_message_with_7_straight_wrong_guesses(capsys, monkeypatch):
     # Arrange (prepare to simulate user input)
     input_letters = "bcpzqvx"
-    monkeypatch.setattr('sys.stdin', make_std_input(input_letters))
+    monkeypatch.setattr("sys.stdin", make_std_input(input_letters))
 
     # Act
-    snowman('snowman')
+    snowman("snowman")
 
     # Assert (capture the printed output)
     captured = capsys.readouterr()
@@ -270,10 +270,10 @@ def test_prints_failure_message_with_7_straight_wrong_guesses(capsys, monkeypatc
 def test_prints_failure_message_with_7_wrong_guesses_and_two_right(capsys, monkeypatch):
     # Arrange (prepare to simulate user input)
     input_letters = "sbcpnzqvx"
-    monkeypatch.setattr('sys.stdin', make_std_input(input_letters))
+    monkeypatch.setattr("sys.stdin", make_std_input(input_letters))
 
     # Act
-    snowman('snowman')
+    snowman("snowman")
 
     # Assert (capture the printed output)
     captured = capsys.readouterr()
@@ -287,10 +287,10 @@ def test_prints_failure_message_with_7_wrong_guesses_and_two_right(capsys, monke
 def test_prints_success_message_if_all_letters_with_non_alpha_symbols_guessed(capsys, monkeypatch):
     # Arrange (prepare to simulate user input)
     input_letters = "nibtul"
-    monkeypatch.setattr('sys.stdin', make_std_input(input_letters))
+    monkeypatch.setattr("sys.stdin", make_std_input(input_letters))
 
     # Act
-    snowman('built-in')
+    snowman("built-in")
 
     # Assert (capture the printed output)
     captured = capsys.readouterr()

@@ -3,13 +3,13 @@ SNOWMAN_MAX_WORD_LENGTH = 8
 SNOWMAN_MAX_WRONG_GUESSES = 7
 
 SNOWMAN_IMAGE = [
-    '*   *   *  ',
-    ' *   _ *   ',
-    '   _[_]_ * ',
+    "*   *   *  ",
+    " *   _ *   ",
+    "   _[_]_ * ",
     '  * (")    ',
-    '  \( : )/ *',
-    '* (_ : _)  ',
-    '-----------',
+    "  \\( : )/ *",
+    "* (_ : _)  ",
+    "-----------",
 ]
 
 
@@ -123,7 +123,7 @@ def print_wrong_letters(wrong_letters):
     if not wrong_letters:
         return
 
-    print(f"Wrong letters: {' '.join(wrong_letters)}")
+    print(f"Wrong letters: {" ".join(wrong_letters)}")
 
 
 # There are no issues in this function
