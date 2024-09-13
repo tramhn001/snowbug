@@ -19,8 +19,7 @@ def snowman(snowman_word):
 
     while True:
         print(build_game_board(snowman_word, snowman_letters_guessed))
-        user_letter = get_letter_from_user(
-            snowman_letters_guessed, wrong_letters)
+        user_letter = get_letter_from_user(snowman_letters_guessed, wrong_letters)
 
         if user_letter in snowman_letters_guessed:
             print(f"Correct! {user_letter} is in the word!")
@@ -52,7 +51,7 @@ def build_snowman_graphic(num_wrong_guesses):
 
     # get the part of the snowman for the number of wrong guesses
     lines = []
-    for line_no in range(num_wrong_guesses - 1):
+    for line_no in range(num_wrong_guesses):
         lines.append(SNOWMAN_IMAGE[line_no])
 
     return "\n".join(lines)
@@ -81,6 +80,8 @@ def get_letter_from_user(word_dict, wrong_letters):
 def build_word_dict(word):
     word_dict = {}
     for letter in word:
+        if not letter.isalpha():
+            continue
         # keep track of any character a player might guess (alphabetic)
         word_dict[letter] = False
 
@@ -100,7 +101,7 @@ def is_word_guessed(word_dict):
 def build_game_board(word, word_dict):
     output_letters = []
     for elem in word:
-        if elem in word_dict:
+        if elem in word_dict and word_dict[elem] or not elem.isalpha():
             # automatically add any character a player wouldn't be able to guess
             output_letters += elem
         elif word_dict[elem]:
@@ -116,6 +117,7 @@ def build_game_board(word, word_dict):
 def add_wrong_letter(wrong_letters, letter):
     # track the wrong guesses in alphabetical order
     wrong_letters.append(letter)
+    wrong_letters.sort()
 
 
 # There are no issues in this function
